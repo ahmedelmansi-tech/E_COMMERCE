@@ -1,4 +1,7 @@
-const products = [
+
+import { Product } from "../types";
+import SingleProduct from "./SingleProduct";
+const products:Product[] = [
   {
     id: 1,
     name: "Adidas CoreFit T-Shirt",
@@ -111,8 +114,10 @@ const products = [
 
 const ProductsList = () => {
   return (
-    <div>
-      PRODUCTS 
+    <div className="my-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
+      {products.map((singleProduct)=> {
+        return <SingleProduct key={singleProduct.id} singleProduct={singleProduct}/>
+      })} 
     </div>
   )
 }
