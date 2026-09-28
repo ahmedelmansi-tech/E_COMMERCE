@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 import { Product } from "../types";
 import SingleProduct from "./SingleProduct";
 const products:Product[] = [
@@ -112,13 +112,20 @@ const products:Product[] = [
   },
 ];
 
-const ProductsList = () => {
+const ProductsList =  ({category}:{category?:string}) => {
+
   return (
-    <div className="my-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
-      {products.map((singleProduct)=> {
-        return <SingleProduct key={singleProduct.id} singleProduct={singleProduct}/>
-      })} 
-    </div>
+  <div>
+        <div className="my-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
+          {products.map((singleProduct)=> {
+            return <SingleProduct key={singleProduct.id} singleProduct={singleProduct}/>
+          })} 
+        </div>
+        
+        <div className="flex justify-end">
+          <Link href={`${category ? `/products/?category=${category}` : "/products"}`} className="btn ">View All ... </Link>
+        </div>
+  </div>
   )
 }
 

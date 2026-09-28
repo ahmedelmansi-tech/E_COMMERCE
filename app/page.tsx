@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Categories from "./component/Categories";
 import ProductsList from "./component/ProductsList";
+import Filter from "./component/Filter";
 
-export default function Home() {
+export default async function Home({searchParams}:{searchParams:Promise<{category?:string}>}) {
+
+  const {category} = (await searchParams)
+
+  
   return (
   <>
     <div className="relative aspect-video container mx-auto">
@@ -13,7 +18,8 @@ export default function Home() {
       <Image src={"/hero.jpg"} fill  alt="hero" />
     </div>
     <Categories/>
-    <ProductsList/>
+    {category && <Filter/>}
+    <ProductsList category={category}/>
   </>
   );
 }
