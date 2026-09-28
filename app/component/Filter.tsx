@@ -8,7 +8,7 @@ const Filter = () => {
 const  handleSorting = (sortingValue : string) => {
   const sortedParam = new URLSearchParams(searchParams)
   sortedParam.set("sort", sortingValue)
-  router.push(`${pathname}/?${sortedParam}`)
+  router.push(`${pathname}/?${sortedParam}` ,{scroll:false})
 }
   return (
        <div className="flex items-center justify-end gap-2 text-sm text-gray-500 my-6">

@@ -23,7 +23,7 @@ const Nav = () => {
         <Link href={"/"}>
             <Home/>
         </Link>
-        <Link href={"/"} className="relative">
+        <Link href={"/cart"} className="relative">
             <ShoppingCart/>
             <div className="absolute -top-3 left-3 size-5 bg-red-400 flex justify-center items-center text-white text-xs rounded-full shadow-xs">1</div>
         </Link>
