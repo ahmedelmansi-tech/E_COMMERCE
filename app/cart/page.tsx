@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { CartItemsType } from "../types";
+import ShippingForm from "../component/ShippingForm";
 
 const steps = [
   {
@@ -127,8 +128,7 @@ const CartPageContent = () => {
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
           
-          
-          {cartItems.map((item) => (
+          {activeStep === 1 && cartItems.map((item) => (
               // SINGLE CART ITEM
               <div
                 className="flex items-center justify-between"
@@ -168,8 +168,10 @@ const CartPageContent = () => {
                   <Trash2 className="w-3 h-3" />
             </button>
               </div>
-          ))}
+          )) }
           
+          
+           {activeStep === 2 && <ShippingForm/>}
           
           
           {/* {activeStep === 1 ? (

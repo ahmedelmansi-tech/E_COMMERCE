@@ -74,7 +74,7 @@ const Categories = () => {
 
            newParams.set("category" , `${SLUG}`)
 
-            route.push(`${pathname}?${newParams.toString()}`)
+            route.push(`${pathname}?${newParams.toString()}`,{scroll:false})
     }
 
     

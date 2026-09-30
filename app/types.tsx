@@ -31,4 +31,4 @@ export const formValidationSchema = z.object({
         city: z.string().min(1, "City is required!"),
 })
 
-export type SHIPPINGFORM = z.infer<typeof formValidationSchema>
+export type SHIPPINGFORMFIELDS = z.infer<typeof formValidationSchema>
