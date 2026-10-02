@@ -4,14 +4,18 @@ import { SHIPPINGFORMFIELDS, formValidationSchema } from "../types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowRight } from "lucide-react"
 import { useRouter } from "next/navigation"
-const ShippingForm = () => {
+const ShippingForm = ({setShippingForm}:{setShippingForm:(data:SHIPPINGFORMFIELDS)=> void}) => {
 const router = useRouter()
-    const {register , handleSubmit ,formState:{errors}} = useForm<SHIPPINGFORMFIELDS>({
-        resolver:zodResolver(formValidationSchema)
-    })
+const {register , handleSubmit ,formState:{errors} } = useForm<SHIPPINGFORMFIELDS>({
+  resolver:zodResolver(formValidationSchema)
+})
 
-    const handleShippingForm:SubmitHandler<SHIPPINGFORMFIELDS> = (data) => router.push(`?step=3`,{scroll:false})   
-     
+const handleShippingForm:SubmitHandler<SHIPPINGFORMFIELDS> = (data)=> {
+  console.log(data)
+  setShippingForm(data)
+  router.push("/cart?step=3")
+} 
+ 
   return (
     <>
       <form

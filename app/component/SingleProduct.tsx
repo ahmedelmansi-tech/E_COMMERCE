@@ -1,10 +1,11 @@
 "use client"
-
 import { Product } from "../types"
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 import { ShoppingCart } from "lucide-react"
+import useChartStore from "../stores/ChatStore"
+
 const SingleProduct = ({singleProduct}:{singleProduct:Product}) => {
   
   
@@ -20,6 +21,21 @@ const SingleProduct = ({singleProduct}:{singleProduct:Product}) => {
     [type]:value
    }) )
   }
+
+
+const { addToCart} = useChartStore()
+
+const handleAddingProducts = ()=> {
+  addToCart({
+    ...singleProduct,
+    quantity:1,
+    selectedSize:productFeatures.size,
+    selectedColor:productFeatures.color,
+  })
+}
+
+
+
 
   return (
       <div className="shadow-lg rounded-lg overflow-hidden">
@@ -64,7 +80,7 @@ const SingleProduct = ({singleProduct}:{singleProduct:Product}) => {
         <div className="flex items-center justify-between">
           <p className="font-medium">${singleProduct.price.toFixed(2)}</p>
           <button
-            // onClick={handleAddToCart}
+            onClick={handleAddingProducts}
             className="ring-1 ring-gray-200 shadow-lg rounded-md px-2 py-1 text-sm cursor-pointer hover:text-white hover:bg-black transition-all duration-300 flex items-center gap-2"
           >
             <ShoppingCart className="w-4 h-4" />
