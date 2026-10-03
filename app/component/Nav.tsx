@@ -33,7 +33,7 @@ const Nav = () => {
         </Link>
         <Link href={"/cart"} className="relative">
             <ShoppingCart/>
-            <div className="absolute -top-3 left-3 size-5 bg-red-400 flex justify-center items-center text-white text-xs rounded-full shadow-xs">{cart.length}</div>
+            <div className="absolute -top-3 left-3 size-5 bg-red-400 flex justify-center items-center text-white text-xs rounded-full shadow-xs">{cart.reduce((acc, current)=> acc + current.quantity ,0)}</div>
         </Link>
         </div>
 

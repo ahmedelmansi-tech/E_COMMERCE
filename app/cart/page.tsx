@@ -7,6 +7,7 @@ import { useState } from "react";
 import { CartItemsType, SHIPPINGFORMFIELDS } from "../types";
 import ShippingForm from "../component/ShippingForm";
 import Payment from "../component/Payment";
+import { toast } from "react-toastify";
 
 const steps = [
   {
@@ -86,11 +87,7 @@ const CartPageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [shippingForm, setShippingForm] = useState<SHIPPINGFORMFIELDS>();
-
   const activeStep = parseInt(searchParams.get("step") || "1");
-
-//   const { cart, removeFromCart } = useCartStore();
-
 
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
@@ -133,7 +130,7 @@ const CartPageContent = () => {
               // SINGLE CART ITEM
               <div
                 className="flex items-center justify-between"
-                key={item.id + item.selectedSize + item.selectedColor}
+                key={`${item.id}-${item.selectedColor}-${item.selectedSize}`}
               >
                 {/* IMAGE AND DETAILS */}
                 <div className="flex gap-8">
@@ -166,7 +163,12 @@ const CartPageContent = () => {
                 {/* DELETE BUTTON */}
              <button className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer"
                 >
-                  <Trash2 className="w-3 h-3"  onClick={() =>  removeFromCart(item)}/>
+                  <Trash2 className="w-3 h-3"  onClick={() =>{
+                    removeFromCart(item);
+                    toast.warning("removed from the cart")
+                  
+                  }} 
+                   />
             </button>
               </div>
           )) }
@@ -224,12 +226,5 @@ const CartPageContent = () => {
   );
 };
 
-// const CartPage = () => {
-//   return (
-//     <Suspense fallback={<div>Loading...</div>}>
-//       <CartPageContent />
-//     </Suspense>
-//   );
-// };
 
 export default CartPageContent;

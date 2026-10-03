@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { ShoppingCart } from "lucide-react"
 import useChartStore from "../stores/ChatStore"
+import { toast } from "react-toastify"
 
 const SingleProduct = ({singleProduct}:{singleProduct:Product}) => {
   
@@ -32,6 +33,7 @@ const handleAddingProducts = ()=> {
     selectedSize:productFeatures.size,
     selectedColor:productFeatures.color,
   })
+  toast.success("added to cart succesfully")
 }
 
 
